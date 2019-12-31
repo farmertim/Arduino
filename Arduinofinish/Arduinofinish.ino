@@ -20,53 +20,66 @@ pinMode(isobstaclePin1,INPUT);
 Serial.begin(9600);
 }
 
+
 void loop() {
   // put your main code here, to run repeatedly:
 isobstacle=digitalRead(isobstaclePin);
 isobstacle1=digitalRead(isobstaclePin1);
 
-if(isobstacle1==LOW){
-  Serial.println("obstacle!!,obstacle");
-  digitalWrite(LED1,HIGH);
-  check=1;
-  //int x=digitalRead(isobstaclePin);
-  //Serial.println(x);
-  }else{
-    Serial.println("clear");
-    digitalWrite(LED1,LOW);
-     check=0;
-  }
+    
+    
+   
 
 if(isobstacle==LOW){
   Serial.println("obstacle!!,obstacle");
   digitalWrite(LED,HIGH);
-  check1=1;
-  
+
+  check=1;
+
   }else{
     Serial.println("clear");
-    digitalWrite(LED,LOW);
-    check1=0;
-  }
-  if(check==1&&check1==1){
-    digitalWrite(buzzerPin,HIGH);
-    for(int i=0;i<1800;i++){
-    tone(buzzerPin,i,10);
-    delay(1);
-    }
-  for(int i=1800;i>150;i--){
-    tone(buzzerPin,i,10);
-    delay(1);
-    }
+    digitalWrite(LED1,LOW);
+     digitalWrite(LED,LOW);
+     check=0;
     
-    digitalWrite(buzzerPin,LOW);
+  }
+  delay(300);
+if(isobstacle1==LOW){
+  Serial.println("obstacle!!,obstacle");
+  digitalWrite(LED1,HIGH);
+  check1=1;
+
+  }else{
+    Serial.println("clear");
+    digitalWrite(LED1,LOW);
+     check1=0;
+  }
+
+  if(check==1&&check1==1){
+  
     digitalWrite(LED2,HIGH);
      digitalWrite(LED,LOW);
       digitalWrite(LED1,LOW);
-    
+ digitalWrite(buzzerPin,LOW);
     }
     else{
-       digitalWrite(buzzerPin,LOW);
-       digitalWrite(LED2,LOW);
+      if(check==1){
+
+    digitalWrite(buzzerPin,LOW);
+      digitalWrite(buzzerPin,HIGH);
+    for(int i=0;i<1500;i++){
+    tone(buzzerPin,i,10);
+    delay(1);
+    }
+  for(int i=1500;i>120;i--){
+    tone(buzzerPin,i,10);
+    delay(1);
       }
-  delay(200);
+       //digitalWrite(buzzerPin,LOW);
+       digitalWrite(LED2,LOW);
+      
+ //digitalWrite(buzzerPin,LOW);
+      }
+    }
+
 }
